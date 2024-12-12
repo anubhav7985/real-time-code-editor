@@ -8,9 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server:dev": "nodemon server.js",
-    "server:prod": "node server.js",
-    "start": "npm run build && npm run server:prod"
+    "start": "start"
   },
   "dependencies": {
     "codemirror": "^5.65.18",
