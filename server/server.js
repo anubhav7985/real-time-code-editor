@@ -1,26 +1,20 @@
-import express from 'express'
-import http from 'http'
-import { Server } from 'socket.io'
-import Actions from './Actions.js'
-import { fileURLToPath } from 'url';
-import path, { dirname } from 'path';
+const express  = require('express');
+const http = require('http');
+const { Server } = require('socket.io')
+const Actions = require('./Actions.js')
+const path  = require('path');
+const { dirname } = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const _dirname = path.resolve();
 
 const app = express()
 const server = http.createServer(app)
 const io = new Server(server)
 
-app.use(express.static(path.join(__dirname,"../client/dist")))
+app.use(express.static(path.join(_dirname,"../client/dist")))
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
+    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"))
 })
-// app.use(express.static(path.join(_dirname,"/client/dist")))
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
-// })
 
 const userSocketMap = {}
 function getAllConnectedClients(roomId) {
