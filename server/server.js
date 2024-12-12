@@ -12,7 +12,12 @@ const server = http.createServer(app)
 const io = new Server(server)
 
 app.use(express.static(path.join(_dirname,"../client/dist")))
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
+//     // res.sendFile(path.join(__dirname, "../client", "dist", "index.html"))
+//     res.send("wellcom to my app")
+// })
+
+app.get("/",(req, res) => {
     // res.sendFile(path.join(__dirname, "../client", "dist", "index.html"))
     res.send("wellcom to my app")
 })
